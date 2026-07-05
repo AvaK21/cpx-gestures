@@ -1,0 +1,9 @@
+
+# Serial communication support
+pyserial==3.5
+# MediaPipe Needs x64 archtitecture
+# Using 3.11.6 version of python to avoid issues with MediaPipe
+mediapipe==0.10.32
+opencv-python==4.13.0.92
+opencv-contrib-python==4.13.0.92
+numpy==2.4.3
