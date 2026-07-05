@@ -140,6 +140,7 @@ def main() -> None:
 
     debouncer = GestureDebouncer(DEBOUNCE_FRAMES)
     cap = cv2.VideoCapture(0)
+    cv2.namedWindow("gesture-sender", cv2.WINDOW_NORMAL)
     if not cap.isOpened():
         sys.exit("Cannot open webcam.")
 
