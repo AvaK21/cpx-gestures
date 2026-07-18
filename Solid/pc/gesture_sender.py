@@ -10,15 +10,23 @@ Model:    gesture_recognizer.task
 
 import sys
 import time
-
+from PIL import ImageFont, ImageDraw, Image
+import os
 import cv2
+import numpy as np
 import serial
 import serial.tools.list_ports
 import mediapipe as mp
 from mediapipe.tasks import python as mp_python
 from mediapipe.tasks.python import vision
 
-MODEL_PATH = "gesture_recognizer.task"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+font_location = os.path.join(BASE_DIR, "font", "VERDANA.TTF")  # path to the font file
+font = ImageFont.truetype(font_location, 30)  # load once, outside loop
+TEXT_LOCATION = (10,10)
+MODEL_PATH =  os.path.join(BASE_DIR, "..", "..", "gesture_recognizer.task")  # path to the MediaPipe gesture recognizer model
+
 
 # Serial port for the CPX *data* CDC channel (NOT the REPL console).
 # Set to your port, or None to auto-detect.
@@ -176,11 +184,23 @@ def main() -> None:
                 ser.write(msg)
                 print(f"sent {msg!r}  ({latest['name']} @ {latest['score']:.2f})")
 
-            cv2.putText(
-                frame,
-                f"{latest['name']} ({latest['score']:.2f})  stable={debouncer.stable}",
-                (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2,
+            #Added a transpartent to have transparent background for the text overlay. 
+            # This is done by creating a new RGBA image for the overlay, drawing the text and a semi-transparent rectangle behind it, 
+            # and then compositing it with the original frame. The final frame is then converted back to RGB for OpenCV display.
+            img_pil = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).convert("RGBA")
+            overlay = Image.new("RGBA", img_pil.size,(0,0,0,0))
+            draw_overlay = ImageDraw.Draw(overlay)
+            text = f"{latest['name']} ({(latest['score'] * 100):.0f}%)"
+            bbox = draw_overlay.textbbox(TEXT_LOCATION, text=text, font=font)
+            padding = 3
+            draw_overlay.rectangle(
+                (bbox[0] - padding, bbox[1] - padding, bbox[2] + padding, bbox[3] + padding),
+                fill=(0,0,0,30) #black, semi-transparent
             )
+            draw_overlay.text(TEXT_LOCATION, text = text, font = font, fill=(0,20,100,255))
+
+            img_pil = Image.alpha_composite(img_pil,overlay).convert("RGB")
+            frame = cv2.cvtColor(np.array(img_pil), cv2.COLOR_RGB2BGR)
             cv2.imshow("gesture-sender", frame)
             if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
