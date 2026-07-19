@@ -84,7 +84,7 @@ sounddevice, etc.) automatically — no action needed.
 If not included in repository, download the .task used in the project ex: gesture_recognizer.task
 
 Can find do
-![Gesture Recognizer](https://colab.research.google.com/github/googlesamples/mediapipe/blob/main/examples/gesture_recognizer/python/gesture_recognizer.ipynb#scrollTo=OMjuVQiDYJKF) 
+[Gesture Recognizer](https://colab.research.google.com/github/googlesamples/mediapipe/blob/main/examples/gesture_recognizer/python/gesture_recognizer.ipynb#scrollTo=OMjuVQiDYJKF) 
 
 ```
 !wget -q https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task
