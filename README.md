@@ -121,7 +121,6 @@ Set `CPX_PORT = None` to fall back to automatic detection by USB VID
 
 ### 7. Run
 
-
 ```powershell
 python Solid/pc/gesture_sender.py
 ```

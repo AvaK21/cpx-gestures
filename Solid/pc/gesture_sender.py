@@ -3,7 +3,7 @@
 Protocol: ASCII digit + newline (e.g. b"4\n") sent ONLY when the debounced
 gesture changes. The CPX side reads lines from usb_cdc.data.
 
-Requires: mediapipe, opencv-python (pulled in by mediapipe), pyserial
+Requires: mediapipe, opencv-python (pulled in by mediapipe), pyserial, PIL, 
 Model:    gesture_recognizer.task
           https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/latest/gesture_recognizer.task
 """
@@ -132,6 +132,8 @@ def main() -> None:
     def on_result(result, output_image, timestamp_ms):
         if result.gestures and result.gestures[0]:
             top = result.gestures[0][0]  # first hand, top category
+
+
             if top.score >= MIN_SCORE:
                 latest["id"] = GESTURE_IDS.get(top.category_name, 0)
                 latest["name"] = top.category_name

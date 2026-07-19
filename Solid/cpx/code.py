@@ -16,15 +16,14 @@ if serial is None:
 
 serial.timeout = 0  # non-blocking reads
 
-#Define colors for the gestures
+#Define colors for the gestures RGB
 RED = (255, 0, 0)
-LIGHT_BLUE = (0, 0, 255)
+LIGHT_BLUE = (0, 140, 255)
 GREEN = (0, 255, 0)
 PINK = (255, 0, 255)
-YELLOW = (255, 255, 51)
-PURPLE = (127, 0, 255)
+YELLOW = (255, 255, 0)
+PURPLE = (147, 0, 225)
 NONE = (0, 0, 0)
-TEAL = (0, 255, 255)
 GRAY = (127, 127, 127)
 
 
@@ -34,13 +33,13 @@ REACTIONS = {
     1: (GREEN, "fist"),
     2: (LIGHT_BLUE, "palm"),
     3: (YELLOW, "point"),
-    4: (TEAL, "thumb up"),
-    5: (GRAY, "thumb down"),
+    4: (GRAY, "thumb up"),
+    5: (RED, "thumb down"),
     6: (PURPLE, "victory"),
     7: (PINK, "love"),
 }
 
-cp.pixels.brightness = 0.05
+cp.pixels.brightness = .2
 buf = b""
 # Make sure the first gesture is sent
 current = -1
@@ -61,4 +60,6 @@ while True:
                 color, name = REACTIONS[gesture_id]
                 cp.pixels.fill(color)
                 print("gesture:", name)  # visible on the REPL console port
+                if gesture_id == 4:      # small flourish for thumbs-up
+                    cp.play_tone(880, 0.1)
     time.sleep(0.01)
