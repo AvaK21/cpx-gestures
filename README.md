@@ -137,6 +137,7 @@ Set `CPX_PORT = None` to fall back to automatic detection by USB VID
 
 ### 7. Run
 
+
 **Must be run from the repo root** — `MODEL_PATH` is a relative path
 resolved against the current working directory, not the script's location.
 

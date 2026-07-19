@@ -1,0 +1,9 @@
+print top 
+
+Top Category(index=-1, score=0.8898327350616455, display_name=None, category_name='Closed_Fist')
+Top Category(index=-1, score=0.9159883856773376, display_name=None, category_name='Closed_Fist')
+Top Category(index=-1, score=0.9189075827598572, display_name=None, category_name='Closed_Fist')
+Top Category(index=-1, score=0.8499894738197327, display_name=None, category_name='Closed_Fist')
+Top Category(index=-1, score=0.5669384002685547, display_name=None, category_name='None')
+Top Category(index=-1, score=0.4751023054122925, display_name=None, category_name='None')
+
