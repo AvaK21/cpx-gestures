@@ -139,6 +139,16 @@ Press `q` in the preview window to quit.
 Protocol: ASCII digit + newline (e.g. `b"4\n"`), sent PC → CPX only, on
 debounced gesture *change* (not every frame).
 
+## T-SHIRT
+
+- Soldered on a side of brass sewable snaps on the back of each of the CPX pins
+- Attached the other side of the snaps on the pins I planned to use and added a little fabric glue
+- Pressed it against the t-shirt, and unsnapped the CPX away leaving (most) of the pins I wanted to use for support
+  - Had to redo this step a few times
+  - 4 pins that would be the same used if CPX was positioned 180 degrees different, 2 at top and 2 at the bottom in odd-function positioning
+  - Didn't use pins need for UART for future projects
+- Sewed on the snaps and checked that the CPX fit correctly
+
 ## Notes on tooling
 
 - **Pylint `E1101: Module 'cv2' has no member`** is a known false positive —

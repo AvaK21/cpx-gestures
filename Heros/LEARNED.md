@@ -1,15 +1,27 @@
-print top 
 
-Top Category(index=-1, score=0.8898327350616455, display_name=None, category_name='Closed_Fist')
-Top Category(index=-1, score=0.9159883856773376, display_name=None, category_name='Closed_Fist')
-Top Category(index=-1, score=0.9189075827598572, display_name=None, category_name='Closed_Fist')
-Top Category(index=-1, score=0.8499894738197327, display_name=None, category_name='Closed_Fist')
-Top Category(index=-1, score=0.5669384002685547, display_name=None, category_name='None')
-Top Category(index=-1, score=0.4751023054122925, display_name=None, category_name='None')
+
+# Project
+
+| Hero | Gesture | Hero | Gesture |
+|----|---------|----|---------|
+| None | None (idle) | Captain America | Thumb_Up |
+| HULK | Closed_Fist | Thanos | Thumb_Down |
+| Iron man | Open_Palm | Doctor Strange | Victory |
+| Thor | Pointing_Up | Spiderman | ILoveYou |
+
+## Expected Behavior
+ - When the model recognizes a gesture the heros name and the model's confidence is displayed on the screen by cv2 and PILLOW
+ - The CPX neopixels displays an animation
+
+ ## Notes
+ - Have the CPX plugged in before running the hero_sender.py so the program can recognize the COM_PORT, 
+ - hero_sender program expects you know the data COM of your CPX and hardcode it in COM_PORT = "COM#"
+ - The first hand the model identifies it will use in relation to the gestures, if you remove your hands from the computer's vision... 
+    - the next hand appears will be used for the gestures
 
 # Learned
 
-## How to do manually non-blocking animations
+## How to do manually non-blocking polling animations
 
 - If the current gesture has not changed and the INTERVAL of time as pasted, run the function again with the index values updated
 - Use time.monotonic(), which will return a float, time.time() will return a integer which will block the animations to update once a second and not the set INTERVAL
