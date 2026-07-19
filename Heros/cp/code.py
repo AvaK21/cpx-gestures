@@ -1,35 +1,34 @@
 import time
-
 import usb_cdc
-
+from random import randint
 from adafruit_circuitplayground import cp
 
-import random
 
 
 serial = usb_cdc.data
 if serial is None:
-    # boot.py missing or not yet applied — blink red forever as a diagnostic.
+
     while True:
         cp.pixels.fill((30, 0, 0))
         time.sleep(0.3)
         cp.pixels.fill(0)
         time.sleep(0.3)
 
-#DEFINE Colors
+
 GREEN = (0,255,0)
 BLUE = (0,0,255)
 YELLOW = (255,255,0)
-BLUEISH = (100,149,237)
+BLUEISH = (0,100,255)
 MAGENTA = (255,0,255)
 ORANGE = (255,120,0)
 RED = (255,0,0)
 NONE = (0,0,0)
+WHITE = (255,255,255)
 
 INTERVAL = 0.20
 IRON_MAN_STEP = 30
 
-ANIMATED = {2,3,5, 7}  # set of gesture IDs that should be animated (spiderman)
+
 
 iron_man_brightness = 0
 iron_man_direction = 1
@@ -39,14 +38,22 @@ THOR_LEFT_START = 9
 THOR_RIGHT_START = 0
 thor_left = THOR_LEFT_START
 thor_right = THOR_RIGHT_START
-thor_direction = 1  # 1 for expanding, -1 for contracting
+thor_direction = 1  
 
 thanos_index = 0
+cap_index = 0
+
+hulk_index = 0
 
 
 def hulk():
-    cp.pixels.fill(GREEN)
-
+    # cp.pixels.fill((0,255,0))
+    global hulk_index
+    cp.pixels[hulk_index] = GREEN
+    hulk_index = (hulk_index + 1) % 10
+    if hulk_index == 0:
+        cp.pixels.fill(NONE)
+    
 
 def iron_man():
     global iron_man_brightness, iron_man_direction
@@ -62,22 +69,22 @@ def iron_man():
 
 def thor():
     global thor_left, thor_right, thor_direction
-    if thor_direction == 1:  # Expanding
+    if thor_direction == 1: 
         cp.pixels[thor_left] = YELLOW
         cp.pixels[thor_right] = YELLOW
         thor_left -= 1
         thor_right += 1
         if thor_right >= 5 or thor_left < 5:
-            thor_direction = -1  # Switch to contracting
+            thor_direction = -1  
             thor_left = 5
             thor_right = 4
-    else:  # Contracting
+    else:  
         cp.pixels[thor_left] = NONE
         cp.pixels[thor_right] = NONE
         thor_left += 1
         thor_right -= 1
         if thor_left > THOR_LEFT_START or thor_right < THOR_RIGHT_START:
-            thor_direction = 1  # Switch to expanding
+            thor_direction = 1  
             thor_left = THOR_LEFT_START
             thor_right = THOR_RIGHT_START
 
@@ -85,7 +92,10 @@ def thor():
 
 
 def captain_america():
-    cp.pixels.fill(BLUEISH)
+    global cap_index
+    cp.pixels.fill(BLUEISH)       
+    cp.pixels[cap_index] = WHITE   
+    cap_index = (cap_index + 1) % 10
 
 
 def thanos():
@@ -93,12 +103,12 @@ def thanos():
     if(thanos_index == 0):
         cp.pixels.fill(MAGENTA)
     elif( 1 <= thanos_index <= 5):
-        pass  # do nothing, keep the last state
+        pass 
     elif(thanos_index == 6):
         for i in range(10):
-            cp.pixels[i] = MAGENTA if random.randint(0,1) == 0 else NONE
+            cp.pixels[i] = MAGENTA if randint(0,1) == 0 else NONE
     elif(7 <= thanos_index <= 11):
-        pass  # do nothing, keep the last state
+        pass  
     thanos_index += 1
     if thanos_index > 11:
         thanos_index = 0
@@ -106,21 +116,30 @@ def thanos():
 
 
 def doctor_strange():
-    cp.pixels.fill(ORANGE)
+    cp.pixels.brightness = 0.2
+    for i in range(10):
+        roll = randint(0,2)
+        hue = randint(110,255)
+        if roll == 0:      
+            cp.pixels[i] = (hue, 120, 0)  
+        elif roll == 1:
+            cp.pixels[i] =  (hue, 0, 0)  
+        else:
+            cp.pixels[i] = (0, 0, 0)  
+
+        
 
 
 def spiderman():
     global spiderman_state
-    if spiderman_state:
-        cp.pixels[0::2] = [RED] * 5
-        cp.pixels[1::2] = [BLUE] * 5
-    else:
-        cp.pixels[0::2] = [BLUE] * 5
-        cp.pixels[1::2] = [RED] * 5
+    a,b = (RED,BLUE) if spiderman_state else (BLUE,RED)
+    for i in range(10):
+        cp.pixels[i] = a if i%2 == 0 else b
     spiderman_state = not spiderman_state
 
 def clear_hulk():
-    pass
+    global hulk_index
+    hulk_index = 0
 
 def clear_iron_man():
     global iron_man_brightness, iron_man_direction
@@ -144,52 +163,41 @@ def clear_thanos():
     thanos_index = 0
 
 def clear_captain_america():
-    pass
+    global cap_index
+    cap_index = 0
 
 def clear_doctor_strange():
-    pass
+    cp.pixels.brightness = 0.05
 
+def idle():
+    cp.pixels.fill(NONE)
 
-
-
-
-#CPX doesn't have a built-in way to do a switch statement, so we use a if/el
 ACTIONS = {
-    0: lambda: cp.pixels.fill(NONE),
-    1: hulk,
-    2: iron_man,
-    3: thor,
-    4: captain_america,
-    5: thanos,
-    6: doctor_strange,
-    7: spiderman
-}
-
-CLEAR_ACTIONS = {
-    0: lambda: cp.pixels.fill(NONE),
-    1: clear_hulk,
-    2: clear_iron_man,
-    3: clear_thor,
-    4: clear_captain_america,
-    5: clear_thanos,
-    6: clear_doctor_strange,
-    7: clear_spiderman,
-    -1 : lambda: cp.pixels.fill(NONE)  # Clear action for invalid gesture ID
+    0:  (idle,            idle),
+    1:  (hulk,            clear_hulk),
+    2:  (iron_man,        clear_iron_man),
+    3:  (thor,            clear_thor),
+    4:  (captain_america, clear_captain_america),
+    5:  (thanos,          clear_thanos),
+    6:  (doctor_strange,  clear_doctor_strange),
+    7:  (spiderman,       clear_spiderman),
+    -1: (idle,            idle),
 }
 
 
 
-serial.timeout = 0  # non-blocking reads
+serial.timeout = 0  
 
 cp.pixels.brightness = 0.05
 buf = b""
-current = -1  # Make sure the first gesture is sent
-gesture_id = 0  # Initialize gesture_id to a default value
-last = time.monotonic()  # Initialize last to the current time
+current = -1  
+gesture_id = 0  
+last = time.monotonic()  
 
 while True:
+
     if serial.in_waiting > 0:
-    # Accumulate bytes until a newline; tolerate partial writes.
+
         data = serial.read(serial.in_waiting)
         if data:
             buf += data
@@ -198,16 +206,15 @@ while True:
                 try:
                     gesture_id = int(line.strip())
                 except ValueError:
-                    continue #garbage on the line, skip it
+                    continue 
                 if  0 <= gesture_id <= 7 and gesture_id != current:
-                    CLEAR_ACTIONS[current]()  # Clear the previous gesture's effect
+                    ACTIONS[current][1]() 
                     current = gesture_id
-                    ACTIONS[gesture_id]()
-                    print("Index:", gesture_id)
+                    ACTIONS[gesture_id][0]()
     now = time.monotonic()
-    # print("Current:", current, "Last:", last, "Now:", now)
-    if current in ANIMATED and now - last >= INTERVAL:
+
+    if current not in (0,-1) and now - last >= INTERVAL:
                 last = now
-                ACTIONS[current]()
+                ACTIONS[current][0]()
 
     time.sleep(.001)

@@ -81,14 +81,14 @@ def main() -> None:
         if result.gestures and result.gestures[0]:
             top = result.gestures[0][0] #first hand, top category
             if top.score >= MIN_SCORE:
-                id,color,name = GESTURE_IDS.get(top.category_name, 0)
+                id,color,name = GESTURE_IDS.get(top.category_name, GESTURE_IDS["None"])
                 latest["id"] = id
                 latest["name"] = name
                 latest["color"] = color
                 latest["score"] = top.score
                 return
-        else:
-            latest["id"], latest["color"], latest["name"], latest["score"] = 0,(0,0,0,0), None, 0.0
+
+        latest["id"], latest["color"], latest["name"], latest["score"] = 0,(0,0,0,0), None, 0.0
 
 
 
