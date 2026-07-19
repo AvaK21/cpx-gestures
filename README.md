@@ -141,13 +141,13 @@ debounced gesture *change* (not every frame).
 
 ## T-SHIRT
 
-- Soldered on a side of brass sewable snaps on the back of each of the CPX pins
-- Attached the other side of the snaps on the pins I planned to use and added a little fabric glue
-- Pressed it against the t-shirt, and unsnapped the CPX away leaving (most) of the pins I wanted to use for support
-  - Had to redo this step a few times
-  - 4 pins that would be the same used if CPX was positioned 180 degrees different, 2 at top and 2 at the bottom in odd-function positioning
-  - Didn't use pins need for UART for future projects
-- Sewed on the snaps and checked that the CPX fit correctly
+1. Soldered on a side of brass sewable snaps on the back of each of the CPX pins
+2. Attached the other side of the snaps on the pins I planned to use and added a little fabric glue
+3. Pressed it against the t-shirt, and unsnapped the CPX away, leaving (most) of the pins I wanted to use for support
+    - Had to redo this step a few times
+    - 4 pins, and same 4 pins if CPX was positioned 180 degrees different, 2 at top and 2 at the bottom in odd-function positioning
+    - Didn't use pins need for UART for future projects
+4. Sewed on the snaps with regular thread and checked that the CPX fit correctly
 
 ## Notes on tooling
 
