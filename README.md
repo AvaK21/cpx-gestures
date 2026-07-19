@@ -11,25 +11,6 @@ sends the result over USB serial to an Adafruit Circuit Playground Express
                                                           code.py reads line, reacts
 ```
 
-*Built with assistance from Claude (Anthropic).*
-
-## Project structure
-
-```
-cpx-gestures/
-├── Solid/
-│   ├── cpx/
-│   │   ├── boot.py              # Enables usb_cdc data channel — runs on hard reset only
-│   │   └── code.py              # CPX-side: reads gesture IDs, reacts via solid NeoPixel colors
-│   └── pc/
-│       └── gesture_sender.py    # PC-side: webcam capture, MediaPipe inference, serial send
-├── gesture_recognizer.task  # MediaPipe model (download separately, see below)
-├── requirements.txt
-├── pyproject.toml           # Pylint config (cv2 extension allow-list)
-├── note_to_self.txt
-└── .gitignore
-```
-
 ## Requirements
 
 - **Windows on ARM64** (or any platform where the native architecture lacks
@@ -100,14 +81,17 @@ sounddevice, etc.) automatically — no action needed.
 
 ### 4. Download the MediaPipe model file
 
-Not included in the repo (binary model files don't belong in git history).
-Download into the project root:
+If not included in repository, download the .task used in the project ex: gesture_recognizer.task
 
-```powershell
-curl -o gesture_recognizer.task https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/latest/gesture_recognizer.task
+Can find do
+![Gesture Recognizer](https://colab.research.google.com/github/googlesamples/mediapipe/blob/main/examples/gesture_recognizer/python/gesture_recognizer.ipynb#scrollTo=OMjuVQiDYJKF) 
+
+```
+!wget -q https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task
 ```
 
 ### 5. Set up the CPX
+> Example is using Solid project, can do same steps on the other projects
 
 1. Copy `Solid/cpx/boot.py` and `Solid/cpx/code.py` to the CIRCUITPY drive
    (keep the names as-is — CircuitPython only auto-runs a file named exactly
@@ -137,15 +121,10 @@ Set `CPX_PORT = None` to fall back to automatic detection by USB VID
 
 ### 7. Run
 
-**Must be run from the repo root** — `MODEL_PATH` is a relative path
-resolved against the current working directory, not the script's location.
 
 ```powershell
 python Solid/pc/gesture_sender.py
 ```
-
-Running it from inside `Solid/pc/` (e.g. `cd Solid/pc && python gesture_sender.py`)
-will fail to find `gesture_recognizer.task`.
 
 Press `q` in the preview window to quit.
 
