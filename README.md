@@ -10,6 +10,19 @@ sends the result over USB serial to an Adafruit Circuit Playground Express
                                                     [CPX] boot.py enables data CDC
                                                           code.py reads line, reacts
 ```
+## Gesture → ID mapping
+
+| ID | Gesture | ID | Gesture |
+|----|---------|----|---------|
+| 0 | None (idle) | 4 | Thumb_Up |
+| 1 | Closed_Fist | 5 | Thumb_Down |
+| 2 | Open_Palm | 6 | Victory |
+| 3 | Pointing_Up | 7 | ILoveYou |
+
+Protocol: ASCII digit + newline (e.g. `b"4\n"`), sent PC → CPX only, on
+debounced gesture *change* (not every frame).
+
+
 
 ## Requirements
 
@@ -127,17 +140,6 @@ python Solid/pc/gesture_sender.py
 
 Press `q` in the preview window to quit.
 
-## Gesture → ID mapping
-
-| ID | Gesture | ID | Gesture |
-|----|---------|----|---------|
-| 0 | None (idle) | 4 | Thumb_Up |
-| 1 | Closed_Fist | 5 | Thumb_Down |
-| 2 | Open_Palm | 6 | Victory |
-| 3 | Pointing_Up | 7 | ILoveYou |
-
-Protocol: ASCII digit + newline (e.g. `b"4\n"`), sent PC → CPX only, on
-debounced gesture *change* (not every frame).
 
 ## T-SHIRT
 
