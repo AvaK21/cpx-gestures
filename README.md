@@ -22,7 +22,31 @@ sends the result over USB serial to an Adafruit Circuit Playground Express
 Protocol: ASCII digit + newline (e.g. `b"4\n"`), sent PC → CPX only, on
 debounced gesture *change* (not every frame).
 
+## Purpose
+**LEARN** 
+To gain experience with
+- developing wearable electronics
+- computer vision
+- embedded systems with low RAM
+- microcontrollers
+- combine creativity with engineering
+- posting on linkedin
+- markdown
+- continual use of GitHub
 
+Each Project will be to further my knowledge and get closer to the end goal
+
+
+## WHY
+- Make Fun Electronics and Enginerring project on my own
+- If you are interested in electronics, you likely thought/think Iron Man is cool! (That is the case for me!) This is my way of making an Iron Man project and have my skills expand as I go.
+
+## Projects in chronological order
+
+| # | Project|
+--------------
+| 1 | Solid - Hello world of Computer Vision with MediaPipe |
+| 2 | Heros - Add low cost RAM animations and slight customization with PILLOW |
 
 ## Requirements
 
