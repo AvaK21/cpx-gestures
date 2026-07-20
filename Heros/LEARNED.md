@@ -4,10 +4,10 @@
 
 | Hero | Gesture | Hero | Gesture |
 |----|---------|----|---------|
-| None | None (idle) | Captain America | Thumb_Up |
-| HULK | Closed_Fist | Thanos | Thumb_Down |
-| Iron man | Open_Palm | Doctor Strange | Victory |
-| Thor | Pointing_Up | Spiderman | ILoveYou |
+| None | None (idle) | CAPTAIN AMERICA | Thumb_Up |
+| HULK | Closed_Fist | THANOS | Thumb_Down |
+| IRON MAN | Open_Palm | DOCTOR STRANGE | Victory |
+| THOR | Pointing_Up | SPIDERMAN | ILoveYou |
 
 ## Expected Behavior
  - When the model recognizes a gesture the heros name and the model's confidence is displayed on the screen by cv2 and PILLOW
