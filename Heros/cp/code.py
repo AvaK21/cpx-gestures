@@ -1,21 +1,3 @@
-"""Heros/code.py — Circuit Playground Express: react to gesture IDs from USB CDC data.
-Protocol: one ASCII integer per line, e.g. b"4\n". 0 = no gesture / idle.
-
-Goal: Cheap Animations
-Using the animation library, CPX would run out of RAM very quickly. Instead, I made the animations "manually" to reduce RAM usage.
-
-
-- CPX only has about 256 KB, and couldn't find a contiguous block of 376 bytes
-Ways I reduced RAM usage:
- - reduce comments and print statements
- - remove lambdas
- - dictionaries require overhead so globals > dictionaries
- - remove splice
- - turn the 2 big dictionaries to 1
- - import only the used function of random
- - Made animations less RAM intensive with less variables
-"""
-
 import time
 import usb_cdc
 from random import randint
@@ -65,12 +47,13 @@ hulk_index = 0
 
 
 def hulk():
-    # cp.pixels.fill((0,255,0))
     global hulk_index
-    cp.pixels[hulk_index] = GREEN
-    hulk_index = (hulk_index + 1) % 10
     if hulk_index == 0:
         cp.pixels.fill(NONE)
+
+    cp.pixels[hulk_index] = GREEN
+    hulk_index = (hulk_index + 1) % 10
+
     
 
 def iron_man():
