@@ -1,6 +1,6 @@
 
 
-# Project
+# HEROS
 
 | Hero | Gesture | Hero | Gesture |
 |----|---------|----|---------|
@@ -8,6 +8,11 @@
 | HULK | Closed_Fist | THANOS | Thumb_Down |
 | IRON MAN | Open_Palm | DOCTOR STRANGE | Victory |
 | THOR | Pointing_Up | SPIDERMAN | ILoveYou |
+
+## WHY
+- If you are into electronics, there is a good chance that you thought/think Iron Man was cool. (That is at least the case for me!) This project is my way making an Iron Man project with my current growing skill level. This iteration of the project is to grow my ability to customize the experience like different hero names appear on the screen instead of the gesture title and in different colors. Also animation with the CPX neopixels. While there is an animation library for CPX, it takes up so much of the RAM that you can only import a few in the project before the HEAP is too full for all of blocks that need  consecutive data to be placed. But I didn't want to just animate 2 or 3. I wanted to animate all 7 of the gestures. So I manuallly made non-blocking polling gestures animations that are cheaper in RAM.
+
+- I with the first gesture (Spiderman) to get it to update faster than 1 second. Then on the last gesture (Hulk), I ran out of RAM
 
 ## Expected Behavior
  - When the model recognizes a gesture the heros name and the model's confidence is displayed on the screen by cv2 and PILLOW
@@ -61,5 +66,7 @@ Ways I went to reduce RAM
 - Graphics that appear on screen in response to gestures
 - Hand Tracking .task 
 
+## PILLOW
+- How to structure the dictionary to key to a tuple to have information for the name and color of the label that appears on the screen with PIL
 
 
