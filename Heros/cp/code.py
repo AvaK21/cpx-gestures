@@ -2,6 +2,7 @@ import time
 import usb_cdc
 from random import randint
 from adafruit_circuitplayground import cp
+import gc
 
 
 
@@ -195,6 +196,8 @@ current = -1
 gesture_id = 0  
 last = time.monotonic()  
 
+print(f"RAM free: {gc.mem_free()} bytes") 
+
 while True:
 
     if serial.in_waiting > 0:
@@ -209,13 +212,14 @@ while True:
                 except ValueError:
                     continue 
                 if  0 <= gesture_id <= 7 and gesture_id != current:
+                    gc.collect()
                     ACTIONS[current][1]() 
                     current = gesture_id
                     ACTIONS[gesture_id][0]()
     now = time.monotonic()
 
     if current not in (0,-1) and now - last >= INTERVAL:
-                last = now
-                ACTIONS[current][0]()
+        last = now
+        ACTIONS[current][0]()
 
     time.sleep(.001)

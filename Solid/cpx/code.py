@@ -60,6 +60,4 @@ while True:
                 color, name = REACTIONS[gesture_id]
                 cp.pixels.fill(color)
                 print("gesture:", name)  # visible on the REPL console port
-                if gesture_id == 4:      # small flourish for thumbs-up
-                    cp.play_tone(880, 0.1)
     time.sleep(0.01)

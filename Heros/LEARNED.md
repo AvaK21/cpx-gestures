@@ -1,5 +1,3 @@
-
-
 # Project
 
 | Hero | Gesture | Hero | Gesture |
@@ -12,6 +10,8 @@
 ## Expected Behavior
  - When the model recognizes a gesture the heros name and the model's confidence is displayed on the screen by cv2 and PILLOW
  - The CPX neopixels displays an animation
+ - Terminal of Hero sender with output the index of the Hero
+ - Terminal of communication (not data) of CPX will print how many bytes are free after loading and right before going to main while True loop
 
  ## Notes
  - Have the CPX plugged in before running the hero_sender.py so the program can recognize the COM_PORT, 
@@ -42,8 +42,12 @@ Code done running.
 Press any key to enter the REPL. Use CTRL-D to reload.
 ```
 
+Use gc library to understand KB you have left in the RAM, and troubleshoot RAM issues
 
-### CPX only has about 256 KB, and couldn't find a contiguous block of 376 bytes
+### CPX only has about 32 KB RAM, and couldn't find a contiguous block of 376 bytes
+
+- ~17 KB is used for initialize a requirements of program so really only have ~15 KB to use in the program
+
 Ways I went to reduce RAM
  - reduce comments and print statements
  - remove lambdas
