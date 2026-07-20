@@ -2,21 +2,21 @@
 
 <table>
   <tr>
-    <td><img src="images/fist.png" width="200"/></td>
-    <td><img src="images/hardware.png" width="200"/></td>
-    <td><img src="images/ily.png" width="200"/></td>
+    <td><img src="images/fist.png" width="350"/></td>
+    <td><img src="images/hardware.png" width="350"/></td>
+    <td><img src="images/ily.png" width="350"/></td>
 
   </tr>
   <tr>
-    <td><img src="images/none.png" width="200"/></td>
-    <td><img src="images/palm.png" width="200"/></td>
-    <td><img src="images/pointing_up.png" width="200"/></td>
+    <td><img src="images/none.png" width="350"/></td>
+    <td><img src="images/palm.png" width="350"/></td>
+    <td><img src="images/pointing_up.png" width="350"/></td>
 
   </tr>
   <tr>
-    <td><img src="images/thumbs_down.png" width="200"/></td>
-    <td><img src="images/thumbs_up.png" width="200"/></td>
-    <td><img src="images/victory.png" width="200"/></td>
+    <td><img src="images/thumbs_down.png" width="350"/></td>
+    <td><img src="images/thumbs_up.png" width="350"/></td>
+    <td><img src="images/victory.png" width="350"/></td>
   </tr>
 </table>
 
