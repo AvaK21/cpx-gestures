@@ -1,5 +1,3 @@
-
-
 # HEROS
 
 | Hero | Gesture | Hero | Gesture |
@@ -10,19 +8,23 @@
 | THOR | Pointing_Up | SPIDERMAN | ILoveYou |
 
 ## WHY
-- If you are into electronics, there is a good chance that you thought/think Iron Man was cool. (That is at least the case for me!) This project is my way making an Iron Man project with my current growing skill level. This iteration of the project is to grow my ability to customize the experience like different hero names appear on the screen instead of the gesture title and in different colors. Also animation with the CPX neopixels. While there is an animation library for CPX, it takes up so much of the RAM that you can only import a few in the project before the HEAP is too full for all of blocks that need  consecutive data to be placed. But I didn't want to just animate 2 or 3. I wanted to animate all 7 of the gestures. So I manuallly made non-blocking polling gestures animations that are cheaper in RAM.
+- If you are into electronics, there is a good chance that you thought/think Iron Man was cool. (That is at least the case for me!) This project is my way making an Iron Man project with my current growing skill level. This iteration of the project is to grow my ability to customize the experience like different hero names appear on the screen instead of the gesture title and in different colors. Also animation with the CPX neopixels. While there is an animation library for CPX, it takes up so much of the RAM that you can only import a few in the project before the HEAP is too full for all of blocks that need  consecutive data to be placed. But I didn't want to just animate 2 or 3. I wanted to animate all 7 of the gestures. So I manuallly made non-blocking polling gestures animations, which are cheaper in RAM.
 
-- I with the first gesture (Spiderman) to get it to update faster than 1 second. Then on the last gesture (Hulk), I ran out of RAM
+- I struggles with the first gesture (Spiderman)  to update faster than 1 second. Then on the last gesture (Hulk), I ran out of RAM so I had reduce RAM usage of the program and that gesture
+
 
 ## Expected Behavior
  - When the model recognizes a gesture the heros name and the model's confidence is displayed on the screen by cv2 and PILLOW
  - The CPX neopixels displays an animation
+ - Terminal of Hero sender with output the index of the Hero
+ - Terminal of communication (not data) COM of CPX will print how many bytes are free after loading and right before going to main while True loop
 
  ## Notes
  - Have the CPX plugged in before running the hero_sender.py so the program can recognize the COM_PORT, 
  - hero_sender program expects you know the data COM of your CPX and hardcode it in COM_PORT = "COM#"
  - The first hand the model identifies it will use in relation to the gestures, if you remove your hands from the computer's vision... 
     - the next hand appears will be used for the gestures
+ - VS Code will have any warnings with from adafruit_circuitplayground import cp and the other imports because it can't see what the CPX has access to
 
 # Learned
 
@@ -47,8 +49,13 @@ Code done running.
 Press any key to enter the REPL. Use CTRL-D to reload.
 ```
 
+Use gc library to understand KB you have left in the RAM, and troubleshoot RAM issues. While gc.enable automatically collects garbage, 
+intentional gc.collect after intensive RAM code could help
 
-### CPX only has about 256 KB, and couldn't find a contiguous block of 376 bytes
+### CPX only has about 32 KB RAM, and couldn't find a contiguous block of 376 bytes
+
+- ~17 KB is used for initialize a requirements of program:  ~15 KB to use in the program
+
 Ways I went to reduce RAM
  - reduce comments and print statements
  - remove lambdas
@@ -56,9 +63,11 @@ Ways I went to reduce RAM
  - remove splice
  - turn the 2 big dictionaries to 1
  - import only the used function of random
- - Changed animations to be less RAM hungry like using a single index (like Hulk)
+ - **Changed animations to be less RAM hungry like using a single index (like Hulk)**
 
- ## Possible Improvements or Next Learn
+ 
+
+ ## Possible Improvements or Next Project
 
 - make a mpy file for the animations to have the code.py smaller and less RAM heavy overall
 - Try dictionaries for each animation when use .mpy version

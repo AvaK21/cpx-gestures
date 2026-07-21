@@ -2,6 +2,7 @@ import time
 import usb_cdc
 from random import randint
 from adafruit_circuitplayground import cp
+import gc
 
 
 
@@ -44,6 +45,10 @@ thanos_index = 0
 cap_index = 0
 
 hulk_index = 0
+
+DEFAULT_BRIGHTNESS  = 0.05
+
+STRANGE_BRIGHTNESS = 0.2
 
 
 def hulk():
@@ -117,7 +122,7 @@ def thanos():
 
 
 def doctor_strange():
-    cp.pixels.brightness = 0.2
+    cp.pixels.brightness = STRANGE_BRIGHTNESS
     for i in range(10):
         roll = randint(0,2)
         hue = randint(110,255)
@@ -144,7 +149,7 @@ def clear_hulk():
 
 def clear_iron_man():
     global iron_man_brightness, iron_man_direction
-    cp.pixels.brightness = 0.05
+    cp.pixels.brightness = DEFAULT_BRIGHTNESS 
     iron_man_brightness = 0
     iron_man_direction = 1
 
@@ -168,7 +173,7 @@ def clear_captain_america():
     cap_index = 0
 
 def clear_doctor_strange():
-    cp.pixels.brightness = 0.05
+    cp.pixels.brightness = DEFAULT_BRIGHTNESS 
 
 def idle():
     cp.pixels.fill(NONE)
@@ -189,11 +194,13 @@ ACTIONS = {
 
 serial.timeout = 0  
 
-cp.pixels.brightness = 0.05
+cp.pixels.brightness = DEFAULT_BRIGHTNESS 
 buf = b""
 current = -1  
 gesture_id = 0  
 last = time.monotonic()  
+
+print(f"RAM free: {gc.mem_free()} bytes") 
 
 while True:
 
@@ -209,13 +216,14 @@ while True:
                 except ValueError:
                     continue 
                 if  0 <= gesture_id <= 7 and gesture_id != current:
+                    gc.collect()
                     ACTIONS[current][1]() 
                     current = gesture_id
                     ACTIONS[gesture_id][0]()
     now = time.monotonic()
 
     if current not in (0,-1) and now - last >= INTERVAL:
-                last = now
-                ACTIONS[current][0]()
+        last = now
+        ACTIONS[current][0]()
 
     time.sleep(.001)

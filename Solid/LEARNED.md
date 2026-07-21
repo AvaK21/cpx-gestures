@@ -1,9 +1,24 @@
 # LEARNED.md — Concepts and Debugging Lessons
 
-*Compiled with assistance from Claude (Anthropic).*
+<table>
+  <tr>
+    <td><img src="images/fist.png" width="350"/></td>
+    <td><img src="images/hardware.png" width="350"/></td>
+    <td><img src="images/ily.png" width="350"/></td>
 
-Chronological-ish log of what came up and why it mattered. Written to be
-re-readable later without re-deriving each conclusion from scratch.
+  </tr>
+  <tr>
+    <td><img src="images/none.png" width="350"/></td>
+    <td><img src="images/palm.png" width="350"/></td>
+    <td><img src="images/pointing_up.png" width="350"/></td>
+
+  </tr>
+  <tr>
+    <td><img src="images/thumbs_down.png" width="350"/></td>
+    <td><img src="images/thumbs_up.png" width="350"/></td>
+    <td><img src="images/victory.png" width="350"/></td>
+  </tr>
+</table>
 
 ## Environment / tooling
 
@@ -131,4 +146,7 @@ re-readable later without re-deriving each conclusion from scratch.
 
 
 ## To Change the Visuals 
+
 - instead of using cv2 used PIL to change font, add semi-transparent box, change text color
+- I copied the VERDANA.TTF from the Windows fonts and put it in a font folder. Used PILLOW library to use the font for the words appear on the screen
+
