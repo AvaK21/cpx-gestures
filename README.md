@@ -22,6 +22,21 @@ sends the result over USB serial to an Adafruit Circuit Playground Express
 Protocol: ASCII digit + newline (e.g. `b"4\n"`), sent PC → CPX only, on
 debounced gesture *change* (not every frame).
 
+## Projects in Chronological Order
+
+| # | Project|
+----|----------
+| 1 | Solid - Hello world of Computer Vision with MediaPipe |
+| 2 | Heros - Add low cost RAM animations and customization with PILLOW |
+
+<table>
+<tr>
+<td><img src="Solid/images/pointing_up.png" width="350"/><br>Solid - Pointing up<td>
+<td><img src="Solid/images/victory.png" width="350"/><br>Solid - Victory</td>
+<td><img src="Solid/images/none.png" width="350"/><br>Solid - None</td>
+</tr>
+</table>
+
 ## Purpose
 **LEARN** 
 To gain experience with...
@@ -46,21 +61,6 @@ Each Project will be to further my knowledge and get closer to the end goal
 ## WHY
 - Make Fun Electronics and Engineering projects on my own
 - If you are interested in electronics, you likely thought/think Iron Man is cool! (That is the case for me!) This is my way of making an Iron Man project and have my skills expand as I go.
-
-## Projects in Chronological Order
-
-| # | Project|
-----|----------
-| 1 | Solid - Hello world of Computer Vision with MediaPipe |
-| 2 | Heros - Add low cost RAM animations and customization with PILLOW |
-
-<table>
-<tr>
-<td><img src="Solid/images/pointing_up.png" width="350"/><br>Solid - Pointing up<td>
-<td><img src="Solid/images/victory.png" width="350"/><br>Solid - Victory</td>
-<td><img src="Solid/images/none.png" width="350"/><br>Solid - None</td>
-</tr>
-</table>
 
 ## Requirements
 
