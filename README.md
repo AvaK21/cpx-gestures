@@ -56,10 +56,10 @@ Each Project will be to further my knowledge and get closer to the end goal
 
 <table>
 <tr>
-<td><img src="images/pointing_up.png" width="350"/><br>Solid - Pointing up  <td>
+<td><img src="Solid/images/pointing_up.png" width="350"/><br>Solid - Pointing up  <td>
 </tr>
 <tr>
-<td><img src="images/victory.png" width="350"/><br>Solid - Victory</td>
+<td><img src="Solid/images/victory.png" width="350"/><br>Solid - Victory</td>
 </tr>
 </table>
 
