@@ -48,6 +48,15 @@ Each Project will be to further my knowledge and get closer to the end goal
 | 1 | Solid - Hello world of Computer Vision with MediaPipe |
 | 2 | Heros - Add low cost RAM animations and slight customization with PILLOW |
 
+<table>
+<tr>
+<td><img src="images/pointing_up.png" width="350"/><br>Solid - Pointing up  <td>
+</tr>
+<tr>
+<td><img src="images/victory.png" width="350"/><br>Solid - Victory</td>
+</tr>
+</table>
+
 ## Requirements
 
 - **Windows on ARM64** (or any platform where the native architecture lacks
