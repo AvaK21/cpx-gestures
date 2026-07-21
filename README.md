@@ -40,11 +40,11 @@ Each Project will be to further my knowledge and get closer to the end goal
 *END GOALS:* 
 - Use BLE to have the microcontroller communicate with PC for computer vision projects with MediaPipe.
 - Use BLE to have an app change the state of the microcontroller
-- Make a T-SHIRT that the hardware can attach and detach from ( my Iron Man shirt)
+- Make a T-SHIRT that the have electronics attach and dettach from ( my Iron Man shirt)
 
 
 ## WHY
-- Make Fun Electronics and Enginerring project on my own
+- Make Fun Electronics and Engineering projects on my own
 - If you are interested in electronics, you likely thought/think Iron Man is cool! (That is the case for me!) This is my way of making an Iron Man project and have my skills expand as I go.
 
 ## Projects in Chronological Order
@@ -56,10 +56,9 @@ Each Project will be to further my knowledge and get closer to the end goal
 
 <table>
 <tr>
-<td><img src="Solid/images/pointing_up.png" width="350"/><br>Solid - Pointing up  <td>
-</tr>
-<tr>
+<td><img src="Solid/images/pointing_up.png" width="350"/><br>Solid - Pointing up<td>
 <td><img src="Solid/images/victory.png" width="350"/><br>Solid - Victory</td>
+<td><img src="Solid/images/none.png" width="350"/><br>Solid - None</td>
 </tr>
 </table>
 
