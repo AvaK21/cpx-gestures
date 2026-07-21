@@ -146,4 +146,7 @@
 
 
 ## To Change the Visuals 
+
 - instead of using cv2 used PIL to change font, add semi-transparent box, change text color
+- I copied the VERDANA.TTF from the Windows fonts and put it in a font folder. Used PILLOW library to use the font for the words appear on the screen
+
