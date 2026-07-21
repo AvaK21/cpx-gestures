@@ -24,7 +24,7 @@ debounced gesture *change* (not every frame).
 
 ## Purpose
 **LEARN** 
-To gain experience with
+To gain experience with...
 - developing wearable electronics
 - computer vision
 - embedded systems with low RAM
@@ -33,20 +33,26 @@ To gain experience with
 - posting on linkedin
 - markdown
 - continual use of GitHub
+- CircuitPython vs Python
 
 Each Project will be to further my knowledge and get closer to the end goal
+
+*END GOALS:* 
+- Use BLE to have the microcontroller communicate with PC for computer vision projects with MediaPipe.
+- Use BLE to have an app change the state of the microcontroller
+- Make a T-SHIRT that the hardware can attach and detach from ( my Iron Man shirt)
 
 
 ## WHY
 - Make Fun Electronics and Enginerring project on my own
 - If you are interested in electronics, you likely thought/think Iron Man is cool! (That is the case for me!) This is my way of making an Iron Man project and have my skills expand as I go.
 
-## Projects in chronological order
+## Projects in Chronological Order
 
 | # | Project|
---------------
+----|----------
 | 1 | Solid - Hello world of Computer Vision with MediaPipe |
-| 2 | Heros - Add low cost RAM animations and slight customization with PILLOW |
+| 2 | Heros - Add low cost RAM animations and customization with PILLOW |
 
 <table>
 <tr>
@@ -176,13 +182,13 @@ Press `q` in the preview window to quit.
 
 ## T-SHIRT
 
-1. Soldered on a side of brass sewable snaps on the back of each of the CPX pins
+1. Soldered on the flat side of brass sewable snaps on the back of each of the CPX pins
 2. Attached the other side of the snaps on the pins I planned to use and added a little fabric glue
-3. Pressed it against the t-shirt, and unsnapped the CPX away, leaving (most) of the pins I wanted to use for support
+3. Pressed it against the t-shirt, and unsnap the CPX, leaving (most) of the pins I wanted to use for support
     - Had to redo this step a few times
-    - 4 pins, and same 4 pins if CPX was positioned 180 degrees different, 2 at top and 2 at the bottom in odd-function positioning
+    - 4 pins, and same 4 pins used if CPX was positioned 180 degrees different, 2 at top and 2 at the bottom in odd-function positioning
     - Didn't use pins need for UART for future projects
-4. Sewed on the snaps with regular thread and checked that the CPX fit correctly
+4. Sewed on the snaps with regular thread and checked that the CPX fit correctly throughout the process
 
 ## Notes on tooling
 
