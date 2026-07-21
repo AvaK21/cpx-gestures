@@ -75,5 +75,7 @@ Ways I went to reduce RAM
 - Graphics that appear on screen in response to gestures
 - Hand Tracking .task 
 
+## PILLOW
+- How to structure the dictionary to key to a tuple to have information for the name and color of the label that appears on the screen with PIL
 
 
