@@ -33,7 +33,7 @@ debounced gesture *change* (not every frame).
 <tr>
 <td><img src="Solid/images/pointing_up.png" width="350"/><br>Solid - Pointing up<td>
 <td><img src="Solid/images/victory.png" width="350"/><br>Solid - Victory</td>
-<td><img src="Solid/images/none.png" width="350"/><br>Solid - None</td>
+<td><img src="Solid/images/none.png" width="350"/><br>Solid - None (No hands are present) </td>
 </tr>
 </table>
 
