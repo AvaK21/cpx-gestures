@@ -1,5 +1,7 @@
 # HEROS
 
+<video controls src="media/Heros_gesture.mp4" title="Hero Gestures"></video>
+
 | Hero | Gesture | Hero | Gesture |
 |----|---------|----|---------|
 | None | None (idle) | CAPTAIN AMERICA | Thumb_Up |
