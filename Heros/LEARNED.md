@@ -12,8 +12,8 @@ https://github.com/user-attachments/assets/f34ff3f5-212f-4096-b21a-2ea2c2a6bdf5
 | THOR | Pointing_Up | SPIDERMAN | ILoveYou |
 
 ## WHY
-- If you are into electronics, there is a good chance that you find Iron Man's technology inspiring. (That is at least the case for me!) This project is my way making Iron Man's Arc Reactor with my growing skill level. 
-- This project iteration is to increase customization the experience 
+- If you are into electronics, there is a good chance that you find Iron Man's technology cool and inspiring. (That is at least the case for me!) This project is my way making Iron Man's Arc Reactor with my growing skill level. 
+- This project iteration is to increase customization
    - Hero names in different colors appear on the screen 
    - Animation with the CPX neopixels. 
 
