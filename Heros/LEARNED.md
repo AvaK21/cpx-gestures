@@ -10,10 +10,10 @@
 | THOR | Pointing_Up | SPIDERMAN | ILoveYou |
 
 ## WHY
-- If you are into electronics, there is a good chance that you thought/think Iron Man was cool. (That is at least the case for me!) This project is my way making an Iron Man project with my current growing skill level. This iteration of the project is to grow my ability to customize the experience like different hero names appear on the screen instead of the gesture title and in different colors. Also animation with the CPX neopixels. While there is an animation library for CPX, it takes up so much of the RAM that you can only import a few in the project before the HEAP is too full for all of blocks that need  consecutive data to be placed. But I didn't want to just animate 2 or 3. I wanted to animate all 7 of the gestures. So I manuallly made non-blocking polling gestures animations, which are cheaper in RAM.
-
-- I struggles with the first gesture (Spiderman)  to update faster than 1 second. Then on the last gesture (Hulk), I ran out of RAM so I had reduce RAM usage of the program and that gesture
-
+- If you are into electronics, there is a good chance that you find Iron Man's technology inspiring. (That is at least the case for me!) This project is my way making Iron Man's Arc Reactor with my growing skill level. 
+- This project iteration is to increase customization the experience 
+   - Hero names in different colors appear on the screen 
+   - Animation with the CPX neopixels. 
 
 ## Expected Behavior
  - When the model recognizes a gesture the heros name and the model's confidence is displayed on the screen by cv2 and PILLOW
@@ -24,24 +24,42 @@
  ## Notes
  - Have the CPX plugged in before running the hero_sender.py so the program can recognize the COM_PORT, 
  - hero_sender program expects you know the data COM of your CPX and hardcode it in COM_PORT = "COM#"
- - The first hand the model identifies it will use in relation to the gestures, if you remove your hands from the computer's vision... 
-    - the next hand appears will be used for the gestures
+ - The first hand the model identifies will be used for the gesture model.
  - VS Code will have any warnings with from adafruit_circuitplayground import cp and the other imports because it can't see what the CPX has access to
 
+ ## How to Run
+ 1. load boot.py on CPX and power cycle the CPX
+ 2. Load the code.py on CPX (so the COM#(s) is open)
+ 3. Run the hero_sender.py
+
 # Learned
+
 
 ## How to do manually non-blocking polling animations
 
 - If the current gesture has not changed and the INTERVAL of time as pasted, run the function again with the index values updated
-- Use time.monotonic(), which will return a float, time.time() will return a integer which will block the animations to update once a second and not the set INTERVAL
-- It would be better to have a dictionary for each variable used in animation, however using global references is less RAM intense and I was barely able to make the 7 manual animations
+- Use time.monotonic(), which will return a float, time.time() on CPX will return a integer which will block the animations to update once a second and not the set INTERVAL
+- It would be better to have a dictionary for each animation, however using global references is less RAM intense and I was barely able to make the 7 manual animations
 - Make sure to clear the affects and indexes of the animations when the gesture changes
 
 ## RAM 
 
-I was running out of RAM when on last animation HULK get
+There is an animation library for CPX, but it takes so much RAM... importing 2-3 animations can cause the HEAP is too full for all of consecutive data blocks to be placed. But I didn't want to just animate 2 or 3. I wanted to animate all 7 of the gestures. 
+- So I manuallly made non-blocking polling gestures animations, which are cheaper in RAM. Then still, I had issue with RAM
+- Instead of using the Animation Library, use non-blocking polling to animate
+- I still ran out RAM in the process, like on the last gesture (Hulk), so I had to reduce RAM intensity of the program
+- **32 KB of RAM**, after the system initiazation of a 2 line program: **15KB were left to use**
+
+```   Only about 15KB is left after this program
+ import gc
+
+print(f"RAM free: {gc.mem_free()} bytes")
 
 ```
+
+The error that would appear when the HEAP run out off memory
+
+``` 
 Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
 code.py output:
 MemoryError: memory allocation failed, allocating 376 bytes
