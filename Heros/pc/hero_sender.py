@@ -146,7 +146,7 @@ def main() -> None:
             draw_overlay = ImageDraw.Draw(overlay)
             
             name = latest['name'] if latest['name'] is not None else "None"
-            text = f"{name}: {(latest['score'] *100):.2f}%"
+            text = f"{name}: {(latest['score'] *100):.0f}%"
             bbox = draw_overlay.textbbox(TEXT_LOCATION, text = text, font = font)
             padding = 3
             draw_overlay.rectangle(
