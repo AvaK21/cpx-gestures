@@ -1,6 +1,8 @@
 # HEROS
 
-<video controls src="media/Hero_gesture_GitHub.mp4" title="Hero Gestures"></video>
+
+https://github.com/user-attachments/assets/f34ff3f5-212f-4096-b21a-2ea2c2a6bdf5
+
 
 | Hero | Gesture | Hero | Gesture |
 |----|---------|----|---------|
