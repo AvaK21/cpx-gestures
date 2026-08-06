@@ -1,12 +1,60 @@
 import os
 import cv2
 import time
+import serial
+import serial.tools.list_ports
 from hand_analyzer import HandAnalyzer
 
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_PATH,"..\..","Models", "hand_landmarker.task")
+CPX_PORT = "COM3"  # Change this to your CPX data channel port, or None to auto-detect.
+BAUD = 115200  # ignored by USB CDC, required by pyserial
+#TODO Add debounce in main
+# TODO add try exeception block on open camera and the options line - when would expect errors - other sources, inputs, 
 
-def main():
+
+
+class Debouncer:
+    """Accepts a number only after it is held after N consecutive frames."""
+
+    def __init__(self, frames_required:int = 5):
+        self.frames_required = frames_required
+        self._candidate = None
+        self._count = 0
+        self.current = None
+
+    def update(self, extended: int) -> bool:
+        """Feed extended results. Returns True if current has changed"""
+        if extended == self._candidate:
+            self._count +=1
+        else:
+            self._candidate == extended
+            self._count = 1
+        if self._count >= self.frames_required and self._candidate is not self.current:
+            self.current = self._candidate
+            return True
+        return False
+
+
+
+
+
+
+
+
+
+
+def main() -> None:
+    try:
+        ser = serial.Serial(port=CPX_PORT, baudrate=BAUD, timeout=0) if CPX_PORT else None
+    except serial.SerialException as e:
+        print(f"Error opening serial port {CPX_PORT}: {e}")
+        ser = None
+
+
+
+
+
     cap = cv2.VideoCapture(0)
     cv2.namedWindow("Hand Tracking", cv2.WINDOW_NORMAL)
     if not cap.isOpened():

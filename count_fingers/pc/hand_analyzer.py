@@ -356,9 +356,7 @@ class HandAnalyzer:
         text = f"Count: {num_extended}"
         #print(num_extended)
 
-        cv2.putText(frame, text, (250,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (200,0,200), cv2.LINE_AA)
-
-
+        cv2.putText(frame, text, (250,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (200,0,200), 2, cv2.LINE_AA)
 
     @staticmethod
     def _count_extended_fingers(extended_fingers: list) -> int:
