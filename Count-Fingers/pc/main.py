@@ -9,9 +9,10 @@ BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_PATH,"..\..","Models", "hand_landmarker.task")
 CPX_PORT = "COM3"  # Change this to your CPX data channel port, or None to auto-detect.
 BAUD = 115200  # ignored by USB CDC, required by pyserial
-#TODO Add debounce in main
-# TODO add try exeception block on open camera and the options line - when would expect errors - other sources, inputs, 
+DEBOUNCE_FRAMES = 5  # consecutive frames required before accepting a gesture
 
+# TODO add try exeception block on open camera and the options line - when would expect errors - other sources, inputs, 
+# TODO add input for if the CPX_PORT is empty for user to type answer and have try except 
 
 
 class Debouncer:
@@ -28,9 +29,9 @@ class Debouncer:
         if extended == self._candidate:
             self._count +=1
         else:
-            self._candidate == extended
+            self._candidate = extended
             self._count = 1
-        if self._count >= self.frames_required and self._candidate is not self.current:
+        if self._count >= self.frames_required and self._candidate != self.current:
             self.current = self._candidate
             return True
         return False
@@ -44,16 +45,18 @@ class Debouncer:
 
 
 
+
+
 def main() -> None:
     try:
-        ser = serial.Serial(port=CPX_PORT, baudrate=BAUD, timeout=0) if CPX_PORT else None
+        ser = serial.Serial(port=CPX_PORT, baudrate=BAUD, timeout=0.1) if CPX_PORT else None
     except serial.SerialException as e:
         print(f"Error opening serial port {CPX_PORT}: {e}")
         ser = None
 
 
 
-
+    debouncer = Debouncer(DEBOUNCE_FRAMES)
 
     cap = cv2.VideoCapture(0)
     cv2.namedWindow("Hand Tracking", cv2.WINDOW_NORMAL)
@@ -64,7 +67,7 @@ def main() -> None:
     last_ts = 0
     p_time = time.time()
 
-    p_extended = -1
+
     num_extended = 0
 
     analyzer = HandAnalyzer(MODEL_PATH)
@@ -87,9 +90,15 @@ def main() -> None:
         results  = analyzer.analyze_results(frame)
         num_extended = results[1] if results is not None and results[1] is not None else 0
 
-        if p_extended != num_extended:
-            p_extended = num_extended
-            print(f"Extended: {num_extended} fingers detected.")
+        updated = debouncer.update(num_extended)
+        if updated:
+            if num_extended is not None and ser is not None:
+                msg = f"{num_extended}\n".encode()
+                try:
+                    ser.write(msg)
+                except serial.SerialException as e:
+                    print(f"Error writing to serial port: {e}")
+            #print(f"Extended: {num_extended} fingers detected.")
 
         c_time = time.time()
         fps = 1 / (c_time - p_time ) if p_time != 0 else 0
@@ -100,6 +109,7 @@ def main() -> None:
         
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break
+    del debouncer
     analyzer.close()
     cap.release()
     cv2.destroyAllWindows()
