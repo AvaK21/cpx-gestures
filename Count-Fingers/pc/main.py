@@ -39,7 +39,15 @@ class Debouncer:
 
 
 
-
+def ask_data_cpx_port() -> int:
+    """Ask user for the COM port number for the CPX data channel."""
+    print("Please have CPX connected and have the boot.py enable data channel before inputing the COM port number.")
+    while True:
+        try:
+            com_port = int(input("Enter the COM port number for the data channel of the CPX (e.g., 3 for COM3)"))
+            return com_port
+        except ValueError:
+            print("Invalid input. Please enter a valid COM port number (e.g., 3 for COM3).")
 
 
 
@@ -53,8 +61,20 @@ def main() -> None:
     except serial.SerialException as e:
         print(f"Error opening serial port {CPX_PORT}: {e}")
         ser = None
+        if CPX_PORT is None or ser is None:
+            try:
+                com_num = ask_data_cpx_port()
+                CPX_PORT = f"COM{com_num}"
+                ser = serial.Serial(port=CPX_PORT, baudrate=BAUD, timeout=0.1)
+            except serial.SerialException as e:
+                print(f"Error opening serial port (Twice) {CPX_PORT}: {e}")
+                ser = None
+            except Exception as e:
+                print(f"Unexpected error: {e}")
+                ser = None
 
 
+# if ser is None, get input from user to enter port number
 
     debouncer = Debouncer(DEBOUNCE_FRAMES)
 
