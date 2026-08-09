@@ -11,8 +11,6 @@ CPX_PORT = "COM3"  # Change this to your CPX data channel port, or None to auto-
 BAUD = 115200  # ignored by USB CDC, required by pyserial
 DEBOUNCE_FRAMES = 5  # consecutive frames required before accepting a gesture
 
-# TODO add try exeception block on open camera and the options line - when would expect errors - other sources, inputs, 
-# TODO add input for if the CPX_PORT is empty for user to type answer and have try except 
 
 
 class Debouncer:
@@ -41,13 +39,13 @@ class Debouncer:
 
 def ask_data_cpx_port() -> int:
     """Ask user for the COM port number for the CPX data channel."""
-    print("Please have CPX connected and have the boot.py enable data channel before inputing the COM port number.")
+    print("Please have CPX connected, programmed, and data channel enabled in boot.py before... \nBefore inputing the COM port number.")
     while True:
         try:
-            com_port = int(input("Enter the COM port number for the data channel of the CPX (e.g., 3 for COM3)"))
+            com_port = int(input("Enter the COM port number for the data channel of the CPX (e.g., 3 for COM3)\n"))
             return com_port
         except ValueError:
-            print("Invalid input. Please enter a valid COM port number (e.g., 3 for COM3).")
+            print("Invalid input. Please enter a valid COM port number (e.g., 3 for COM3).\n")
 
 
 
@@ -56,12 +54,13 @@ def ask_data_cpx_port() -> int:
 
 
 def main() -> None:
+    global CPX_PORT
     try:
         ser = serial.Serial(port=CPX_PORT, baudrate=BAUD, timeout=0.1) if CPX_PORT else None
     except serial.SerialException as e:
         print(f"Error opening serial port {CPX_PORT}: {e}")
         ser = None
-        if CPX_PORT is None or ser is None:
+        while CPX_PORT is None or ser is None:
             try:
                 com_num = ask_data_cpx_port()
                 CPX_PORT = f"COM{com_num}"
