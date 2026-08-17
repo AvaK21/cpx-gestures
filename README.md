@@ -10,6 +10,13 @@ sends the result over USB serial to an Adafruit Circuit Playground Express
                                                     [CPX] boot.py enables data CDC
                                                           code.py reads line, reacts
 ```
+
+## Related Project
+
+[CP-MediaPipe](https://github.com/AvaK21/CP-MediaPipe)
+
+This is the expanded version of this project. The move from just Gesture Recognition to other MediaPipe Models like Hand Landmarker
+
 ## Gesture → ID mapping
 
 | ID | Gesture | ID | Gesture |
